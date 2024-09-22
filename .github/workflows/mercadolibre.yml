@@ -27,3 +27,9 @@ jobs:
 
       - name: Run TestNG tests
         run: mvn test -DsuiteXmlFile=src/test/java/suite/allTests.xml
+
+      - name: Upload Cucumber Report
+        uses: actions/upload-artifact@v4
+        with:
+              name: cucumberReport
+              path: cucumberReport.html
