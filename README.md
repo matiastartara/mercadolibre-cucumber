@@ -20,3 +20,5 @@ right click and then click on run.
 **Report**
 
 Report is saved as html format under target/cucumberReport.html
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/matiastartara/mercadolibre-cucumber)
