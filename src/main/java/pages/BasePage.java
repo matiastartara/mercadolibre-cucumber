@@ -19,15 +19,15 @@ public class BasePage {
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     }
 
-    public WebDriver getDriver() {
+    protected WebDriver getDriver() {
         return driver;
     }
 
-    public WebDriverWait getWait() {
+    protected WebDriverWait getWait() {
         return wait;
     }
 
-    public void click(WebElement element) {
+    protected void click(WebElement element) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         } catch (StaleElementReferenceException e) {
@@ -35,13 +35,13 @@ public class BasePage {
         }
     }
 
-    public void type(WebElement e, String text) {
+    protected void type(WebElement e, String text) {
         wait.until(ExpectedConditions.visibilityOf(e));
         e.clear();
         e.sendKeys(text);
     }
 
-    public boolean isElementPresent(By by) {
+    protected boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
             return true;
@@ -50,7 +50,7 @@ public class BasePage {
         }
     }
 
-    public boolean isDisplayed(WebElement element) {
+    protected boolean isDisplayed(WebElement element) {
         try {
             if (element.isDisplayed())
                 return element.isDisplayed();
@@ -60,18 +60,28 @@ public class BasePage {
         return false;
     }
 
-    public static void selectByText(WebElement element, String text) {
+    protected static void selectByText(WebElement element, String text) {
         Select selectElement = new Select(element);
         selectElement.selectByVisibleText(text);
     }
 
-    public static void selectByIndex(WebElement element, int index) {
+    protected static void selectByIndex(WebElement element, int index) {
         Select selectElement = new Select(element);
         selectElement.selectByIndex(index);
     }
 
-    public static void selectByValue(WebElement element, String value) {
+    protected static void selectByValue(WebElement element, String value) {
         Select selectElement = new Select(element);
         selectElement.selectByValue(value);
     }
+
+    protected void waitForPageToLoad() {
+        new WebDriverWait(getDriver(), Duration.ofSeconds(15))
+                .until(driver -> ((JavascriptExecutor) driver)
+                        .executeScript("return document.readyState").equals("complete"));
+    }
+    protected void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
 }
