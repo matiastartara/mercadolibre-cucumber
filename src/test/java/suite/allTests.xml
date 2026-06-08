@@ -3,7 +3,7 @@
 <suite name="Suite">
     <test name="All Test">
         <parameter name="browser" value="chrome"/>
-        <parameter name="headless" value="true"/>
+        <parameter name="headless" value="false"/>
         <parameter name="cucumber.filter.tags" value="@All"/>
         <classes>
             <class name="test.TestRunner"/>
