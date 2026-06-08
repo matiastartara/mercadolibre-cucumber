@@ -28,6 +28,7 @@ public class SearchStep {
     public void the_user_searches_for(String element) {
         homePage.search(element);
     }
+
     @When("navigates to page {string}")
     public void navigates_to_page(String pageNumber) throws MalformedURLException {
          page = new PaginationPage(Driver.get());
